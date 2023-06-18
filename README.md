@@ -7,4 +7,4 @@
 <p>Step 3: Create "mobile_shop" database and Check database's username and password in env file</p>
 <p>Step 4: Run "php artisan migrate", "php artisan db:seed", "npm install" and "npm run dev"</p>
 <p>Step 5: And Run the laravel project with "php artisan serve"</p>
-<p>And then, Login dashboard with admin@gmail.com, 123123123</p>
+<p>And then, Login dashboard(/admin/login) with admin@gmail.com, 123123123</p>
