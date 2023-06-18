@@ -40,6 +40,17 @@ class LoginController extends Controller
     }
 
     /**
+     * Logout the application.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function logout()
+    {
+        Auth::guard('web')->logout();
+        return redirect('/');
+    }
+
+    /**
      * Get the guard to be used during authentication.
      *
      * @return \Illuminate\Contracts\Auth\StatefulGuard
