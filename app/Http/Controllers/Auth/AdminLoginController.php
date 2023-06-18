@@ -32,24 +32,6 @@ class AdminLoginController extends Controller
     }
 
     /**
-     * Handle a login request to the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function login(LoginRequest $request){
-
-        if (Auth::guard('admin_user')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            
-            return redirect($this->redirectTo);
-        }else{
-            return redirect()->back()->withInput()->withErrors(['err_message' => 'Invalid Email or Password']);
-        }
-    }
-
-    /**
      * Logout the application.
      *
      * @return \Illuminate\View\View
