@@ -23,16 +23,6 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the application's User Page.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function getUserPage()
-    {
-        return view('backend.admin.users.index');
-    }
-
-    /**
      * Show the application's Administrator Page.
      *
      * @return \Illuminate\View\View

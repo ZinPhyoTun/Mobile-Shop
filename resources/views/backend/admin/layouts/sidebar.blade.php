@@ -54,7 +54,7 @@
                 </li>
                 <li class="app-sidebar__heading">User Management</li>
                 <li>
-                    <a href="{{ route('admin.users.index') }}" class="sidebar-item @yield('users-active')">
+                    <a href="{{ route('admin.users.index') }}" id="sidebar-user-btn" class="sidebar-item @yield('users-active')">
                         <i class="metismenu-icon pe-7s-users"></i>
                         Users
                     </a>
@@ -62,7 +62,7 @@
                 <li>
                     <a href="{{ route('admin.administrators.index') }}" id="sidebar-admin-btn" class="sidebar-item @yield('administrators-active')">
                         <i class="metismenu-icon pe-7s-users"></i>
-                        Admin Users
+                        Administrators
                     </a>
                 </li>
             </ul>

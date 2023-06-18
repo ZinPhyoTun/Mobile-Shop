@@ -8,7 +8,6 @@
         <div class="container d-flex flex-column align-items-center" data-aos="zoom-in" data-aos-delay="100">
             <h1>Zin Phyo Tun</h1>
             <h2>I'm still developing this site......</h2>
-            <h2>Go to the admin-panel route "/admin/login"...</h2>
             <h2>I'm a professional Web Developer from Myanmar</h2>
             <a href="#" class="btn-about">Shop Mobile Phones</a>
         </div>
