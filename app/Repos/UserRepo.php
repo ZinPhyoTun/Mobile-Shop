@@ -9,7 +9,8 @@ class UserRepo {
     /**
      * @return Object
      */
-    public function model() {
+    public function model()
+    {
         return new User();
     }
 }

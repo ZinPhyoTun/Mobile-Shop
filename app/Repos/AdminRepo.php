@@ -9,7 +9,8 @@ class AdminRepo {
     /**
      * @return Object
      */
-    public function model() {
+    public function model()
+    {
         return new AdminUser();
     }
 }
