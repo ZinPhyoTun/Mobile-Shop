@@ -8,3 +8,4 @@
 <p>Step 4: Run "php artisan migrate", "php artisan db:seed", "npm install" and "npm run dev"</p>
 <p>Step 5: And Run the laravel project with "php artisan serve"</p>
 <p>And then, Login dashboard(/admin/login) with admin@gmail.com, 123123123</p>
+<p>If you run the project, you will need internet connection because of CDN Links.</p>
