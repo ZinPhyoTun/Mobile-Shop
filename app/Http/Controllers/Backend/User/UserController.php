@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Backend\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
-use Illuminate\Http\Request;
 use App\Http\Requests\UpdateUserRequest;
 use App\Repos\UserRepo;
-use App\Models\User;
 use DataTables;
 
 class UserController extends Controller
@@ -52,7 +50,7 @@ class UserController extends Controller
      */
     public function createUserUpdatePage($id)
     {
-        $user = $this->user_repo->model()->findOrFail($id);
+        $user = $this->user_repo->getUser($id);
 
         return view('backend.admin.users.edit', compact('user'));
     }
@@ -64,11 +62,7 @@ class UserController extends Controller
      */
     public function storeUser(CreateUserRequest $request)
     {
-        $this->user_repo->model()->create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
+        $this->user_repo->createUser($request);
 
         return redirect()->route('admin.users.index');
     }
@@ -95,11 +89,7 @@ class UserController extends Controller
             $mail = $request->email;
         }
 
-        $user->update([
-            'name' => $request->name,
-            'email' => $mail,
-            'password' => empty($request->password) ? $request->hpassword : bcrypt($request->password) ,
-        ]);
+        $this->user_repo->updateUser($request, $id, $mail);
 
         return redirect()->route('admin.users.index');
     }
@@ -111,7 +101,7 @@ class UserController extends Controller
      */
     public function deleteUser($id)
     {
-        return $this->user_repo->model()->findOrFail($id)->delete();
+        return $this->user_repo->deleteUser($id);
     }
 
     /**
@@ -121,7 +111,7 @@ class UserController extends Controller
      */
     public function showUser($id)
     {
-        $user = $this->user_repo->model()->findOrFail($id);
+        $user = $this->user_repo->getUser($id);
 
         return view('backend.admin.users.show', compact('user'));
     }
@@ -133,7 +123,7 @@ class UserController extends Controller
      */
     public function getUsers()
     {
-        $users = $this->user_repo->model()->query();
+        $users = $this->user_repo->getForDataTable();
 
         return DataTables::of($users)
         ->editColumn('created_at', function ($user) {

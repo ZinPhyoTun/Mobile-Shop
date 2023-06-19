@@ -26,7 +26,7 @@ class UpdateAdminRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required',
+            'phone' => 'required|min:9',
         ];
     }
 }

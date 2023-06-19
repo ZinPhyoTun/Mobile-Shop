@@ -83,7 +83,7 @@ class AdminController extends Controller
      */
     public function createAdminUpdatePage($id)
     {
-        $administrator = $this->admin_repo->model()->findOrFail($id);
+        $administrator = $this->admin_repo->getAdministrator($id);
 
         return view('backend.admin.administrators.edit', compact('administrator'));
     }
@@ -95,14 +95,7 @@ class AdminController extends Controller
      */
     public function storeAdmin(CreateAdminRequest $request)
     {
-        $this->admin_repo->model()->create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'password' => bcrypt($request->password),
-            'ip' => $request->ip(),
-            'user_agent' => $request->server('HTTP_USER_AGENT'),
-        ]);
+        $this->admin_repo->createAdministrator($request);
 
         return redirect()->route('admin.administrators.index');
     }
@@ -129,14 +122,7 @@ class AdminController extends Controller
             $mail = $request->email;
         }
 
-        $administrator->update([
-            'name' => $request->name,
-            'email' => $mail,
-            'phone' => $request->phone,
-            'password' => empty($request->password) ? $request->hpassword : bcrypt($request->password) ,
-            'ip' => $request->ip(),
-            'user_agent' => $request->server('HTTP_USER_AGENT'),
-        ]);
+        $this->admin_repo->updateAdministrator($request, $id, $mail);
 
         return redirect()->route('admin.administrators.index');
     }
@@ -148,7 +134,7 @@ class AdminController extends Controller
      */
     public function deleteAdmin($id)
     {
-        return $this->admin_repo->model()->findOrFail($id)->delete();
+        return $this->admin_repo->deleteAdministrator($id);
     }
 
     /**
@@ -158,7 +144,7 @@ class AdminController extends Controller
      */
     public function showAdmin($id)
     {
-        $administrator = $this->admin_repo->model()->findOrFail($id);
+        $administrator = $this->admin_repo->getAdministrator($id);
 
         return view('backend.admin.administrators.show', compact('administrator'));
     }
@@ -170,7 +156,7 @@ class AdminController extends Controller
      */
     public function getAdministrators()
     {
-        $admin_users = $this->admin_repo->model()->query();
+        $admin_users = $this->admin_repo->getForDataTable();
 
         return DataTables::of($admin_users)
         ->editColumn('created_at', function ($admin_user) {
