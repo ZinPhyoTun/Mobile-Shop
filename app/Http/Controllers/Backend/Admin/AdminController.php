@@ -7,11 +7,25 @@ use App\Http\Requests\CreateAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Repos\AdminRepo;
 use App\Models\AdminUser;
 use DataTables;
 
 class AdminController extends Controller
 {
+    /**
+     * @var AdminRepo
+     */
+    protected $admin_repo;
+
+    /**
+     * @param AdminRepo $admin_repo
+     */
+    public function __construct(AdminRepo $admin_repo)
+    {
+        $this->admin_repo = $admin_repo;
+    }
+
     /**
      * Show the application's Admin Panel.
      *
@@ -69,7 +83,7 @@ class AdminController extends Controller
      */
     public function createAdminUpdatePage($id)
     {
-        $administrator = AdminUser::findOrFail($id);
+        $administrator = $this->admin_repo->model()->findOrFail($id);
 
         return view('backend.admin.administrators.edit', compact('administrator'));
     }
@@ -81,7 +95,7 @@ class AdminController extends Controller
      */
     public function storeAdmin(CreateAdminRequest $request)
     {
-        AdminUser::create([
+        $this->admin_repo->model()->create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -100,9 +114,9 @@ class AdminController extends Controller
      */
     public function updateAdminData(UpdateAdminRequest $request, $id)
     {
-        $administrator = AdminUser::findOrFail($id);
+        $administrator = $this->admin_repo->model()->findOrFail($id);
 
-        $mails = AdminUser::all()->pluck('email');
+        $mails = $this->admin_repo->model()->get()->pluck('email');
 
         if ($request->email != $administrator->email) {
             if (in_array($request->email, json_decode($mails))) {
@@ -134,7 +148,7 @@ class AdminController extends Controller
      */
     public function deleteAdmin($id)
     {
-        return AdminUser::findOrFail($id)->delete();
+        return $this->admin_repo->model()->findOrFail($id)->delete();
     }
 
     /**
@@ -144,7 +158,7 @@ class AdminController extends Controller
      */
     public function showAdmin($id)
     {
-        $administrator = AdminUser::findOrFail($id);
+        $administrator = $this->admin_repo->model()->findOrFail($id);
 
         return view('backend.admin.administrators.show', compact('administrator'));
     }
@@ -156,7 +170,7 @@ class AdminController extends Controller
      */
     public function getAdministrators()
     {
-        $admin_users = AdminUser::query();
+        $admin_users = $this->admin_repo->model()->query();
 
         return DataTables::of($admin_users)
         ->editColumn('created_at', function ($admin_user) {

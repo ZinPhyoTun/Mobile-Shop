@@ -6,11 +6,25 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateUserRequest;
+use App\Repos\UserRepo;
 use App\Models\User;
 use DataTables;
 
 class UserController extends Controller
 {
+    /**
+     * @var UserRepo
+     */
+    protected $user_repo;
+
+    /**
+     * @param UserRepo $user_repo
+     */
+    public function __construct(UserRepo $user_repo)
+    {
+        $this->user_repo = $user_repo;
+    }
+
     /**
      * Show the application's User Page.
      *
@@ -38,7 +52,7 @@ class UserController extends Controller
      */
     public function createUserUpdatePage($id)
     {
-        $user = User::findOrFail($id);
+        $user = $this->user_repo->model()->findOrFail($id);
 
         return view('backend.admin.users.edit', compact('user'));
     }
@@ -50,7 +64,7 @@ class UserController extends Controller
      */
     public function storeUser(CreateUserRequest $request)
     {
-        User::create([
+        $this->user_repo->model()->create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
@@ -66,9 +80,9 @@ class UserController extends Controller
      */
     public function updateUserData(UpdateUserRequest $request, $id)
     {
-        $user = User::findOrFail($id);
+        $user = $this->user_repo->model()->findOrFail($id);
 
-        $mails = User::all()->pluck('email');
+        $mails = $this->user_repo->model()->get()->pluck('email');
 
         if ($request->email != $user->email) {
             if (in_array($request->email, json_decode($mails))) {
@@ -97,7 +111,7 @@ class UserController extends Controller
      */
     public function deleteUser($id)
     {
-        return User::findOrFail($id)->delete();
+        return $this->user_repo->model()->findOrFail($id)->delete();
     }
 
     /**
@@ -107,7 +121,7 @@ class UserController extends Controller
      */
     public function showUser($id)
     {
-        $user = User::findOrFail($id);
+        $user = $this->user_repo->model()->findOrFail($id);
 
         return view('backend.admin.users.show', compact('user'));
     }
@@ -119,7 +133,7 @@ class UserController extends Controller
      */
     public function getUsers()
     {
-        $users = User::query();
+        $users = $this->user_repo->model()->query();
 
         return DataTables::of($users)
         ->editColumn('created_at', function ($user) {
