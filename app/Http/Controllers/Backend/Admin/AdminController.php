@@ -5,10 +5,7 @@ namespace App\Http\Controllers\Backend\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateAdminRequest;
 use App\Http\Requests\UpdateAdminRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use App\Repos\AdminRepo;
-use App\Models\AdminUser;
 use DataTables;
 
 class AdminController extends Controller
