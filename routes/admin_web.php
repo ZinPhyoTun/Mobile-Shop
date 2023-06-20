@@ -34,6 +34,10 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/categories', [CategoryController::class, 'getCategoriesPage'])->name('admin.categories.index');
     Route::get('/categories/all', [CategoryController::class, 'getCategories'])->name('admin.categories.all');
+    Route::get('/categories/create', [CategoryController::class, 'createCategoryPage'])->name('admin.categories.create');
+    Route::post('/categories/create', [CategoryController::class, 'storeCategory'])->name('admin.categories.store');
+    Route::get('/categories/{id}', [CategoryController::class, 'createCategoryUpdatePage']);
+    Route::post('/categories/{id}', [CategoryController::class, 'updateCategoryData']);
     Route::get('/categories/delete/{id}', [CategoryController::class, 'deleteCategory']);
 
     Route::get('/products', [AdminController::class, 'getProductsPage'])->name('admin.products.index');

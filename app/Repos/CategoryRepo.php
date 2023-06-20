@@ -15,6 +15,40 @@ class CategoryRepo {
     }
 
     /**
+     * @param int $id
+     *
+     * @return category
+     */
+    public function getCategory($id)
+    {
+        return $this->model()->findOrFail($id);
+    }
+
+    /**
+     * @param CreateCategoryRequest $request
+     */
+    public function createCategory($request)
+    {
+        $this->model()->create([
+            'c_name' => $request->c_name,
+            'c_code' => $request->c_code,
+        ]);
+    }
+
+    /**
+     * @param category_name, category_code, id
+     */
+    public function updateCategory($c_name, $c_code, $id)
+    {
+        $category = $this->model()->findOrFail($id);
+
+        $category->update([
+            'c_name' => $c_name,
+            'c_code' => $c_code
+        ]);
+    }
+
+    /**
      * @param $id
      */
     public function deleteCategory($id)

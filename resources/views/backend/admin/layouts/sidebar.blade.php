@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.categories.index') }}" class="sidebar-item @yield('categories-active')">
+                    <a href="{{ route('admin.categories.index') }}" id="sidebar-category-btn" class="sidebar-item @yield('categories-active')">
                         <i class="metismenu-icon pe-7s-menu"></i>
                         Categories
                     </a>

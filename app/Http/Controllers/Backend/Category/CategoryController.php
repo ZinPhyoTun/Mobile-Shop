@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend\Category;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Repos\CategoryRepo;
 use DataTables;
 
@@ -29,6 +31,82 @@ class CategoryController extends Controller
     public function getCategoriesPage()
     {
         return view('backend.admin.categories.index');
+    }
+
+    /**
+     * Show the application's Category Create Page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function createCategoryPage()
+    {
+        return view('backend.admin.categories.create');
+    }
+
+    /**
+     * Create Category.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function storeCategory(CreateCategoryRequest $request)
+    {
+        $this->category_repo->createCategory($request);
+
+        return redirect()->route('admin.categories.index');
+    }
+
+    /**
+     * Show the application's Update Page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function createCategoryUpdatePage($id)
+    {
+        $category = $this->category_repo->getCategory($id);
+
+        return view('backend.admin.categories.edit', compact('category'));
+    }
+
+    /**
+     * Update Category.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function updateCategoryData(UpdateCategoryRequest $request, $id)
+    {
+        $category = $this->category_repo->model()->findOrFail($id);
+
+        $cat_names = $this->category_repo->model()->get()->pluck('c_name');
+
+        $cat_codes = $this->category_repo->model()->get()->pluck('c_code');
+
+        if ($request->c_name != $category->c_name) {
+
+            if (in_array($request->c_name, json_decode($cat_names))) {
+
+                return redirect()->back()->withInput()->withErrors(['c_name' => 'Category Name has already been taken.']);
+            } else {
+                $c_name = $request->c_name;
+            }
+        } elseif ($request->c_name == $category->c_name) {
+            $c_name = $request->c_name;
+        }
+
+        if ($request->c_code != $category->c_code) {
+
+            if (in_array($request->c_code, json_decode($cat_codes))) {
+
+                return redirect()->back()->withInput()->withErrors(['c_code' => 'Category Code has already been taken.']);
+            } else {
+                $c_code = $request->c_code;
+            }
+        } elseif ($request->c_code == $category->c_code) {
+            $c_code = $request->c_code;
+        }
+
+        $this->category_repo->updateCategory($c_name, $c_code, $id);
+
+        return redirect()->route('admin.categories.index');
     }
 
     /**
