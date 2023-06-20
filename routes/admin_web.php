@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Backend\Admin\AdminController;
 use App\Http\Controllers\Backend\User\UserController;
+use App\Http\Controllers\Backend\Category\CategoryController;
 
 Route::group(['prefix' => 'admin'], function () {
 
@@ -31,7 +32,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/users/delete/{id}', [UserController::class, 'deleteUser']);
     Route::get('/users/show/{id}', [UserController::class, 'showUser']);
 
-    Route::get('/categories', [AdminController::class, 'getCategoriesPage'])->name('admin.categories.index');
+    Route::get('/categories', [CategoryController::class, 'getCategoriesPage'])->name('admin.categories.index');
+    Route::get('/categories/all', [CategoryController::class, 'getCategories'])->name('admin.categories.all');
+    Route::get('/categories/delete/{id}', [CategoryController::class, 'deleteCategory']);
 
     Route::get('/products', [AdminController::class, 'getProductsPage'])->name('admin.products.index');
 });

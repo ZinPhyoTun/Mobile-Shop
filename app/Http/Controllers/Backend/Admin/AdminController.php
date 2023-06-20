@@ -44,16 +44,6 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the application's Category Page.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function getCategoriesPage()
-    {
-        return view('backend.admin.categories.index');
-    }
-
-    /**
      * Show the application's Admin Create Page.
      *
      * @return \Illuminate\View\View
