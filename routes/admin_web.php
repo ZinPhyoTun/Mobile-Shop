@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Backend\Admin\AdminController;
 use App\Http\Controllers\Backend\User\UserController;
 use App\Http\Controllers\Backend\Category\CategoryController;
+use App\Http\Controllers\Backend\Product\ProductController;
 
 Route::group(['prefix' => 'admin'], function () {
 
@@ -40,5 +41,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('/categories/{id}', [CategoryController::class, 'updateCategoryData']);
     Route::get('/categories/delete/{id}', [CategoryController::class, 'deleteCategory']);
 
-    Route::get('/products', [AdminController::class, 'getProductsPage'])->name('admin.products.index');
+    Route::get('/products', [ProductController::class, 'getProductsPage'])->name('admin.products.index');
+    Route::get('/products/create', [ProductController::class, 'createProductPage'])->name('admin.products.create');
+    Route::post('/products/create', [ProductController::class, 'storeProduct'])->name('admin.products.store');
 });

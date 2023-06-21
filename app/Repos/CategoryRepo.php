@@ -25,6 +25,14 @@ class CategoryRepo {
     }
 
     /**
+     * @return categorys
+     */
+    public function getAllCategories()
+    {
+        return $this->model()->get();
+    }
+
+    /**
      * @param CreateCategoryRequest $request
      */
     public function createCategory($request)

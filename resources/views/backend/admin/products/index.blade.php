@@ -9,7 +9,7 @@
 
 @section('page_title_buttons')
     <div class="d-flex justify-content-end">
-        <a href="#" class="btn btn-primary action-btn">Add Product</a>
+        <a href="{{ route('admin.products.create') }}" class="btn btn-primary action-btn">Add Product</a>
     </div>
 @endsection
 

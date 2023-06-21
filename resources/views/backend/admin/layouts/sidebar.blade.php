@@ -41,7 +41,7 @@
                 </li>
                 <li class="app-sidebar__heading">Products & Categories</li>
                 <li>
-                    <a href="{{ route('admin.products.index') }}" class="sidebar-item @yield('products-active')">
+                    <a href="{{ route('admin.products.index') }}" id="sidebar-product-btn" class="sidebar-item @yield('products-active')">
                         <i class="metismenu-icon pe-7s-menu"></i>
                         Products
                     </a>

@@ -54,16 +54,6 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the application's Products Page.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function getProductsPage()
-    {
-        return view('backend.admin.products.index');
-    }
-
-    /**
      * Show the application's Update Page.
      *
      * @return \Illuminate\View\View
