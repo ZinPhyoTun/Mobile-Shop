@@ -9,7 +9,7 @@
 
 @section('page_title_buttons')
     <div class="d-flex justify-content-end">
-        <a href="{{ url('admin/administrators/create') }}" class="btn btn-primary">Add Administrator</a>
+        <a href="{{ url('admin/administrators/create') }}" class="btn btn-primary"><i class="fa fa-circle-plus"></i>&nbsp;&nbsp;Add Administrator</a>
     </div>
 @endsection
 

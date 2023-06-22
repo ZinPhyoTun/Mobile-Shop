@@ -9,7 +9,7 @@
 
 @section('page_title_buttons')
     <div class="d-flex justify-content-end">
-        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary action-btn">Add Category</a>
+        <a href="{{ route('admin.categories.create') }}" class="btn btn-primary action-btn"><i class="fa fa-circle-plus"></i>&nbsp;&nbsp;Add Category</a>
     </div>
 @endsection
 

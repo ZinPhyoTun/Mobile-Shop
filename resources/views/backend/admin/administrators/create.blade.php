@@ -75,6 +75,7 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-circle-plus"></i>
                                     {{ __('Create Admin') }}
                                 </button>
                             </div>
