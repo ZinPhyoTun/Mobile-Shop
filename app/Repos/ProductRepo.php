@@ -27,4 +27,12 @@ class ProductRepo {
             'description' => $request->description
         ]);
     }
+
+    /**
+     * @return mixed
+     */
+    public function getForDataTable()
+    {
+        return $this->model()->with('category');
+    }
 }

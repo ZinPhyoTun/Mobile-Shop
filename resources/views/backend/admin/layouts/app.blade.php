@@ -41,8 +41,8 @@
 
             <div class="app-main">
                 @include('backend.admin.layouts.sidebar')
-                <div class="app-main__outer">
-                    <div class="app-main__inner">
+                <div class="app-main__outer container-fluid">
+                    <div class="app-main__inner container">
                         @include('backend.admin.layouts.components.page_title')
                         @yield('content')
                     </div>

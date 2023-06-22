@@ -41,13 +41,13 @@
                 </li>
                 <li class="app-sidebar__heading">Orders and Payments</li>
                 <li>
-                    <a href="#" id="sidebar-order-btn" class="sidebar-item @yield('orders-active')">
+                    <a href="{{ route('admin.orders.index') }}" id="sidebar-order-btn" class="sidebar-item @yield('orders-active')">
                         <i class="metismenu-icon pe-7s-cart"></i>
                         Orders
                     </a>
                 </li>
                 <li>
-                    <a href="#" id="sidebar-payment-btn" class="sidebar-item @yield('payments-active')">
+                    <a href="{{ route('admin.payments.index') }}" id="sidebar-payment-btn" class="sidebar-item @yield('payments-active')">
                         <i class="metismenu-icon pe-7s-cash"></i>
                         Payments
                     </a>

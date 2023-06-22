@@ -6,6 +6,8 @@ use App\Http\Controllers\Backend\Admin\AdminController;
 use App\Http\Controllers\Backend\User\UserController;
 use App\Http\Controllers\Backend\Category\CategoryController;
 use App\Http\Controllers\Backend\Product\ProductController;
+use App\Http\Controllers\Backend\Order\OrderController;
+use App\Http\Controllers\Backend\Payment\PaymentController;
 
 Route::group(['prefix' => 'admin'], function () {
 
@@ -42,6 +44,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/categories/delete/{id}', [CategoryController::class, 'deleteCategory']);
 
     Route::get('/products', [ProductController::class, 'getProductsPage'])->name('admin.products.index');
+    Route::get('/products/all', [ProductController::class, 'getProducts'])->name('admin.products.all');
     Route::get('/products/create', [ProductController::class, 'createProductPage'])->name('admin.products.create');
     Route::post('/products/create', [ProductController::class, 'storeProduct'])->name('admin.products.store');
+
+    Route::get('/orders', [OrderController::class, 'getOrderPage'])->name('admin.orders.index');
+
+    Route::get('/payments', [PaymentController::class, 'getPaymentPage'])->name('admin.payments.index');
 });

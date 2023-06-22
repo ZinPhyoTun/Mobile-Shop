@@ -1,4 +1,4 @@
-<div class="app-page-title px-4 py-3">
+<div class="app-page-title px-4 py-3" style="background: none !important;">
     <div class="page-title-wrapper">
         <div class="page-title-heading">
             {{-- <div class="page-title-icon">
