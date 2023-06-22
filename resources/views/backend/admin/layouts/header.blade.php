@@ -54,30 +54,35 @@
                         <div class="widget-content-left">
                             <div class="btn-group">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                    <img width="42" class="rounded-circle" src="{{ asset('images/avatars/avatar.png') }}" alt="">
+                                    <img width="42" class="rounded-circle"
+                                        src="{{ asset('images/avatars/avatar.png') }}" alt="">
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
-                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                    <h6 tabindex="-1" class="dropdown-header">{{ auth()->guard('admin_user')->user()->name }}</h6>
+                                <div tabindex="-1" role="menu" aria-hidden="true"
+                                    class="dropdown-menu dropdown-menu-right">
+                                    <h6 tabindex="-1" class="dropdown-header">Account Settings</h6>
                                     <button type="button" tabindex="0" class="dropdown-item">Profile</button>
                                     <div tabindex="-1" class="dropdown-divider"></div>
-                                    <button type="button" tabindex="0" class="dropdown-item" onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">Log Out</button>
+                                    <button type="button" tabindex="0" class="dropdown-item"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">Log
+                                        Out</button>
 
                                     {{-- Log Out Form --}}
-                                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
+                                        style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
                             </div>
                         </div>
-                        <div class="widget-content-left  ml-3 header-user-info">
-                            <div class="widget-heading">
-                                @auth
-                                {{ auth()->guard('admin_user')->user()->name }}
-                                @endauth
+                        @auth('admin_user')
+                            <div class="widget-content-left  ml-3 header-user-info">
+                                <div class="widget-heading">
+                                    {{ auth()->guard('admin_user')->user()->name }}
+                                </div>
                             </div>
-                        </div>
+                        @endauth
                     </div>
                 </div>
             </div>
