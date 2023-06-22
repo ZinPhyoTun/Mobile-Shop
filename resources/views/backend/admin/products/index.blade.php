@@ -9,7 +9,8 @@
 
 @section('page_title_buttons')
     <div class="d-flex justify-content-end">
-        <a href="{{ route('admin.products.create') }}" class="btn btn-primary action-btn"><i class="fa fa-circle-plus"></i>&nbsp;&nbsp;Add Product</a>
+        <a href="{{ route('admin.products.create') }}" class="btn btn-primary action-btn"><i
+                class="fa fa-circle-plus"></i>&nbsp;&nbsp;Add Product</a>
     </div>
 @endsection
 
@@ -18,6 +19,21 @@
         <div class="col-md-12">
             <div class="main-card mb-3 card">
                 <div class="card-body">
+                    @if (session('create_message'))
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            {{ session('create_message') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @elseif(session('update_message'))
+                        <div class="alert alert-info alert-dismissible fade show" role="alert">
+                            {{ session('update_message') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
                     <div class="table-responsive">
                         <table class="align-middle mb-0 table table-hover dtable">
                             <thead>

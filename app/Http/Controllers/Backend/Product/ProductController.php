@@ -65,7 +65,7 @@ class ProductController extends Controller
 
         $this->product_repo->createProduct($request, $image_name);
 
-        return redirect()->route('admin.products.index');
+        return redirect()->route('admin.products.index')->with('create_message', 'Created Successfully!');
     }
 
     /**

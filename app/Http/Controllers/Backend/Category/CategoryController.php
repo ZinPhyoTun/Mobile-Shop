@@ -52,7 +52,7 @@ class CategoryController extends Controller
     {
         $this->category_repo->createCategory($request);
 
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index')->with('create_message', 'Created Successfully!');
     }
 
     /**
@@ -106,7 +106,7 @@ class CategoryController extends Controller
 
         $this->category_repo->updateCategory($c_name, $c_code, $id);
 
-        return redirect()->route('admin.categories.index');
+        return redirect()->route('admin.categories.index')->with('update_message', 'Updated Successfully!');
     }
 
     /**

@@ -64,7 +64,7 @@ class UserController extends Controller
     {
         $this->user_repo->createUser($request);
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('create_message', 'Created Successfully!');
     }
 
     /**
@@ -91,7 +91,7 @@ class UserController extends Controller
 
         $this->user_repo->updateUser($request, $id, $mail);
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('update_message', 'Updated Successfully!');
     }
 
     /**

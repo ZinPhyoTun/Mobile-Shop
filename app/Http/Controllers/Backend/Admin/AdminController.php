@@ -74,7 +74,7 @@ class AdminController extends Controller
     {
         $this->admin_repo->createAdministrator($request);
 
-        return redirect()->route('admin.administrators.index');
+        return redirect()->route('admin.administrators.index')->with('create_message', 'Created Successfully!');
     }
 
     /**
@@ -101,7 +101,7 @@ class AdminController extends Controller
 
         $this->admin_repo->updateAdministrator($request, $id, $mail);
 
-        return redirect()->route('admin.administrators.index');
+        return redirect()->route('admin.administrators.index')->with('update_message', 'Updated Successfully!');
     }
 
     /**
