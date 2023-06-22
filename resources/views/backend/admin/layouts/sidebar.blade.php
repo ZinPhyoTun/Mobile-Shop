@@ -39,10 +39,23 @@
                         Home
                     </a>
                 </li>
+                <li class="app-sidebar__heading">Orders and Payments</li>
+                <li>
+                    <a href="#" id="sidebar-order-btn" class="sidebar-item @yield('orders-active')">
+                        <i class="metismenu-icon pe-7s-cart"></i>
+                        Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="sidebar-payment-btn" class="sidebar-item @yield('payments-active')">
+                        <i class="metismenu-icon pe-7s-cash"></i>
+                        Payments
+                    </a>
+                </li>
                 <li class="app-sidebar__heading">Products & Categories</li>
                 <li>
                     <a href="{{ route('admin.products.index') }}" id="sidebar-product-btn" class="sidebar-item @yield('products-active')">
-                        <i class="metismenu-icon pe-7s-menu"></i>
+                        <i class="metismenu-icon pe-7s-shopbag"></i>
                         Products
                     </a>
                 </li>
@@ -61,7 +74,7 @@
                 </li>
                 <li>
                     <a href="{{ route('admin.administrators.index') }}" id="sidebar-admin-btn" class="sidebar-item @yield('administrators-active')">
-                        <i class="metismenu-icon pe-7s-users"></i>
+                        <i class="metismenu-icon pe-7s-user"></i>
                         Administrators
                     </a>
                 </li>
