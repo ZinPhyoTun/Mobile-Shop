@@ -26,11 +26,6 @@
     <title>@yield('meta_title') | {{ config('app.name') }}</title>
     <meta name="description" content="@yield('meta_desc')">
 
-    <link rel="stylesheet" href="{{ asset('fontawesome/css/all.css') }}">
-
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-
     @include('backend.admin.layouts.assets.css')
 </head>
 
@@ -51,13 +46,6 @@
             </div>
         </div>
     @endif
-
-    <script src="{{ asset('fontawesome/js/all.js') }}"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     @include('backend.admin.layouts.assets.js')
 </body>
 

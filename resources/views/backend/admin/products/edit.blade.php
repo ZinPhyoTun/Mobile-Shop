@@ -3,6 +3,12 @@
 @section('meta_title', 'Edit Product')
 @section('page_title', 'Update Product')
 
+@section('back')
+    <div class="page-title-icon">
+        <a href="{{ route('admin.products.index') }}"><i class="fa fa-solid fa-arrow-left"></i></a>
+    </div>
+@endsection
+
 @section('content')
 
     <div class="row">

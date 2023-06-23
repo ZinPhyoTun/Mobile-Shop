@@ -3,6 +3,12 @@
 @section('meta_title', 'Add User')
 @section('page_title', 'Add User')
 
+@section('back')
+    <div class="page-title-icon">
+        <a href="{{ route('admin.users.index') }}"><i class="fa fa-solid fa-arrow-left"></i></a>
+    </div>
+@endsection
+
 @section('content')
 
     <div class="row">
