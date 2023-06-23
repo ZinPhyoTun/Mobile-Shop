@@ -54,8 +54,9 @@
                         <div class="widget-content-left">
                             <div class="btn-group">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                    <img width="42" class="rounded-circle"
-                                        src="{{ asset('images/avatars/avatar.png') }}" alt="">
+                                    @auth('admin_user')
+                                        <img width="42" class="rounded-circle" src="https://ui-avatars.com/api/?name= {{ auth()->guard('admin_user')->user()->name }}" alt="">
+                                    @endauth
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true"

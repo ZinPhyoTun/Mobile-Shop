@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Repos\ProductRepo;
 use App\Repos\CategoryRepo;
 use App\Http\Requests\CreateProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use DataTables;
 
 class ProductController extends Controller
@@ -50,6 +51,70 @@ class ProductController extends Controller
         $categories = $this->category_repo->getAllCategories();
 
         return view('backend.admin.products.create', compact('categories'));
+    }
+
+    /**
+     * Show the application's Update Page.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function createProductUpdatePage($id)
+    {
+        $product = $this->product_repo->getProduct($id);
+
+        $categories = $this->category_repo->getAllCategories();
+
+        return view('backend.admin.products.edit', compact('product', 'categories'));
+    }
+
+    /**
+     * Update Product.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function updateProductData(UpdateProductRequest $request, $id)
+    {
+        $product = $this->product_repo->getProduct($id);
+
+        if(!empty($request->image)) {
+            
+            $image_name = time(). '_' . $request->file('image')->getClientOriginalName();
+
+            $request->image->move(public_path('uploaded_images'), $image_name);
+
+            if(!empty($request->old_image_name)) {
+
+                unlink(public_path('uploaded_images'). '/' . $request->old_image_name);
+            }
+        } else {
+            $image_name = $request->old_image_name;
+        }
+
+        $this->product_repo->updateProduct($request, $id, $image_name);
+
+        return redirect()->route('admin.products.index')->with('update_message', 'Updated Successfully!');
+    }
+
+    /**
+     * Delete Product.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function deleteProduct($id)
+    {
+        return $this->product_repo->deleteProduct($id);
+    }
+
+    /**
+     * Show Product.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showProduct($id)
+    {
+        $product = $this->product_repo->getProduct($id);
+
+        return view('backend.admin.products.show', compact('product'));
     }
 
     /**
