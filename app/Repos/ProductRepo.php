@@ -3,8 +3,9 @@
 namespace App\Repos;
 
 use App\Models\Product;
+use App\Repos\BaseRepo;
 
-class ProductRepo {
+class ProductRepo extends BaseRepo {
 
     /**
      * @return Object
@@ -22,6 +23,14 @@ class ProductRepo {
     public function getProduct($id)
     {
         return $this->model()->findOrFail($id);
+    }
+
+    /**
+     * @return products
+     */
+    public function getAllProducts()
+    {
+        return $this->model()->with('category')->get();
     }
 
     /**

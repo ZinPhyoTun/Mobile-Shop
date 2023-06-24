@@ -3,8 +3,9 @@
 namespace App\Repos;
 
 use App\Models\User;
+use App\Repos\BaseRepo;
 
-class UserRepo {
+class UserRepo extends BaseRepo {
 
     /**
      * @return Object
@@ -56,13 +57,5 @@ class UserRepo {
     public function deleteUser($id)
     {
         return $this->model()->findOrFail($id)->delete();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getForDataTable()
-    {
-        return $this->model()->query();
     }
 }

@@ -3,8 +3,9 @@
 namespace App\Repos;
 
 use App\Models\Category;
+use App\Repos\BaseRepo;
 
-class CategoryRepo {
+class CategoryRepo extends BaseRepo {
 
     /**
      * @return Object
@@ -62,13 +63,5 @@ class CategoryRepo {
     public function deleteCategory($id)
     {
         return $this->model()->findOrFail($id)->delete();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getForDataTable()
-    {
-        return $this->model()->query();
     }
 }

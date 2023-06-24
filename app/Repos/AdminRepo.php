@@ -3,8 +3,9 @@
 namespace App\Repos;
 
 use App\Models\AdminUser;
+use App\Repos\BaseRepo;
 
-class AdminRepo {
+class AdminRepo extends BaseRepo {
 
     /**
      * @return Object
@@ -62,13 +63,5 @@ class AdminRepo {
     public function deleteAdministrator($id)
     {
         return $this->model()->findOrFail($id)->delete();
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getForDataTable()
-    {
-        return $this->model()->query();
     }
 }
